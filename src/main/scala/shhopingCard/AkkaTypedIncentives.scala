@@ -6,7 +6,7 @@ import akka.actor.typed.scaladsl.Behaviors
 object AkkaTypedIncentives {
 
   // 1 -typed messages & actors
-  trait ShoppingCardMessage
+  sealed trait ShoppingCardMessage
   case class AddItem(item: String) extends ShoppingCardMessage
   case class RemoveItem(item: String) extends ShoppingCardMessage
   case object ValidateCard extends ShoppingCardMessage
