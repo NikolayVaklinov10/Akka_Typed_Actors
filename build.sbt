@@ -10,5 +10,7 @@ lazy val akkaVersion = "2.6.10"
 libraryDependencies += "com.typesafe.akka" %% "akka-actor-typed" % akkaVersion
 libraryDependencies += "com.typesafe.akka" %% "akka-stream" % akkaVersion
 
-//
+// logging
+libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.4.1"
+libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.4.1"
 
