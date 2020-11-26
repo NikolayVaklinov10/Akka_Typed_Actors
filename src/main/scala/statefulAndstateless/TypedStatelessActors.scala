@@ -1,6 +1,6 @@
 package statefulAndstateless
 
-import akka.actor.typed.Behavior
+import akka.actor.typed.{ActorSystem, Behavior}
 import akka.actor.typed.scaladsl.Behaviors
 
 object TypedStatelessActors {
@@ -40,6 +40,16 @@ object TypedStatelessActors {
 
 
   def main(args: Array[String]): Unit = {
+    val emotionalActorSystem = ActorSystem(emotionalMutableActor, "EmotionalSystem")
+
+    emotionalActorSystem ! EatChocolate
+    emotionalActorSystem ! EatChocolate
+    emotionalActorSystem ! EatChocolate
+    emotionalActorSystem ! WashDishes
+    emotionalActorSystem ! LearnAkka
+
+    Thread.sleep(1000)
+    emotionalActorSystem.terminate()
 
   }
 
