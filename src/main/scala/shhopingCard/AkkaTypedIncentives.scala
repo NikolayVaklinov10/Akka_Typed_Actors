@@ -63,6 +63,17 @@ object AkkaTypedIncentives {
     }
 
   // 3 - hierarchy
+  val rootOnlineStoreActor = ActorSystem(
+    Behaviors.setup[ShoppingCardMessage]{ ctx =>
+
+      // create children HERE
+      ctx.spawn(shoppingBehavior(Set()), "nickShoppingCard")
+
+      Behaviors.empty
+
+    },
+    "onlineStore"
+  )
 
 
 
