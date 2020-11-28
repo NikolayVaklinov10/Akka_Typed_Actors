@@ -15,7 +15,11 @@ libraryDependencies ++= Seq(
 
   // self4j
   "org.slf4j" % "slf4j-simple" % "1.7.30",
-  "org.slf4j" % "slf4j-api" % "1.7.30"
+  "org.slf4j" % "slf4j-api" % "1.7.30",
+
+
+  "com.typesafe.akka" %% "akka-actor-testkit-typed" % akkaVersion % Test,
+  "org.scalatest" %% "scalatest" % "3.1.0" % Test
 
 )
 
