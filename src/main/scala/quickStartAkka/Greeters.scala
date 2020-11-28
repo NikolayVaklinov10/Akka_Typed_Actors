@@ -1,7 +1,9 @@
 package quickStartAkka
 
 import akka.actor.typed.scaladsl.Behaviors
-import akka.actor.typed.{ActorRef, Behavior}
+import akka.actor.typed.{ActorRef, ActorSystem, Behavior}
+import GreeterMain.SayHello
+
 
 
 // #greeter-actor
@@ -41,29 +43,35 @@ object GreeterBot {
 //#greeter-main
 object GreeterMain {
 
-  final case class SyHello(name: String)
+  final case class SayHello(name: String)
 
-  def apply(): Behavior[SyHello] =
+  def apply(): Behavior[SayHello] =
     Behaviors.setup { context =>
       //#create-actors
       val greeter = context.spawn(Greeter(), "greeter")
+      //#create-actors
 
       Behaviors.receiveMessage { message =>
         //#create-actors
-        val replyTo = context.spawn(GreeterBot(max=3), message.name)
+        val replyTo = context.spawn(GreeterBot(max = 3), message.name)
+        //#create-actors
         greeter ! Greeter.Greet(message.name, replyTo)
         Behaviors.same
       }
     }
 }
 
-
-
-
-
+//#main-class
 object Greeters extends App {
 
 
 
+  //#actor-system
+  val greeterMain: ActorSystem[GreeterMain.SayHello] = ActorSystem(GreeterMain(), "GreetersAkkaActors")
+  //#actor-system
+
+  //#main-send-messages
+  greeterMain ! SayHello("Nikolay")
+  //#main-send-messages
 
 }
